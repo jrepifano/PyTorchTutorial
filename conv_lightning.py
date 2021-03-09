@@ -50,10 +50,11 @@ class ConvNet(pl.LightningModule):
         self.test_acc_epoch(logits, y)
         self.log_dict({'train_acc': self.train_acc_epoch.compute(), 'test_acc': self.test_acc_epoch.compute()}, prog_bar=True, on_step=False, on_epoch=True)
 
-    def training_epoch_end(self, outs):
-        self.train_acc_epoch.reset()
+    #def training_epoch_end(self, outs):
+     #   self.train_acc_epoch.reset()
 
     def validation_epoch_end(self, outs):
+        self.train_acc_epoch.reset()
         self.test_acc_epoch.reset()
 
     def train_dataloader(self):
